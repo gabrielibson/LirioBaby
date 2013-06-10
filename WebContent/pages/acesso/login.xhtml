@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<h:head></h:head>
+<h:body>
+	<h:form style="font-size: 12px">
+
+		<p:growl id="growl" showDetail="true" />
+		<center>
+			<t:div>
+				<p:fieldset legend="Acesso" toggleable="true" toggleSpeed="500"
+					style="width: 250px">
+					<p:ajax event="toggle" listener="#{loginBean.handleToggle}"
+						update="growl" />
+					<h:panelGrid columns="2">
+						<p:outputLabel for="campoLogin" value="Login: " />
+						<p:inputText id="campoLogin" size="30" />
+						<p:outputLabel for="campoSenha" value="Senha: " />
+						<p:inputText type="password" id="campoSenha" size="30" />
+					</h:panelGrid>
+					<p:commandButton value="Entrar" style="float: right" />
+				</p:fieldset>
+			</t:div>
+		</center>
+	</h:form>
+	
+</h:body>
+
+</html>

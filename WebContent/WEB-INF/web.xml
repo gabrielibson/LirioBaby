@@ -18,7 +18,7 @@
     <servlet-name>Faces Servlet</servlet-name>
     <url-pattern>/faces/*</url-pattern>
     <url-pattern>*.jsf</url-pattern>
-  </servlet-mapping>  
+  </servlet-mapping>
   <context-param>
     <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
     <param-value>resources.application</param-value>
@@ -64,7 +64,44 @@
     <param-name>org.apache.myfaces.AUTO_SCROLL</param-name>
     <param-value>true</param-value>
   </context-param>
+  <context-param>  
+    <param-name>primefaces.THEME</param-name>  
+    <param-value>le-frog</param-value>  
+  </context-param>
+  <context-param>  
+    <param-name>primefaces.skin</param-name>  
+    <param-value>none</param-value>  
+  </context-param>
   <listener>
     <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
   </listener>
+  
+  <!-- MyFaces Tomahawk -->
+	<filter>
+		<filter-name>TomahawkFilter</filter-name>
+		<filter-class>org.apache.myfaces.webapp.filter.ExtensionsFilter</filter-class>
+		<init-param>
+			<description>
+				Set the size limit for uploaded files. Format: 10 - 10
+				bytes 10k - 10 KB 10m - 10 MB 1g - 1 GB
+			</description>
+			<param-name>uploadMaxFileSize</param-name>
+			<param-value>100m</param-value>
+		</init-param>
+	</filter>
+	<!-- extension mapping for adding <script/>, <link/>, and other resource 
+		tags to JSF-pages -->
+	<filter-mapping>
+		<filter-name>TomahawkFilter</filter-name>
+		<!-- servlet-name must match the name of your javax.faces.webapp.FacesServlet 
+			entry -->
+		<servlet-name>Faces Servlet</servlet-name>
+	</filter-mapping>
+	<!-- extension mapping for serving page-independent resources (javascript, 
+		stylesheets, images, etc.) -->
+	<filter-mapping>
+		<filter-name>TomahawkFilter</filter-name>
+		<url-pattern>/faces/myFacesExtensionResource/*</url-pattern> <!-- TODO VERIFICAR SE ESSE MAPEAMENTO E UTILIZADO -->
+	</filter-mapping>
+	<!-- Fim MyFaces Tomahawk -->
 </web-app>
